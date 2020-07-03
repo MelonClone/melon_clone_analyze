@@ -31,6 +31,7 @@ public class AMessageReceiver {
 	private CountDownLatch latch = new CountDownLatch(1);
 	
 	public void receiveMessage(String message) {
+		// TODO
 		logger.info(String.format("Received < %s >", message.toString()));
 		latch.countDown();
 	}
