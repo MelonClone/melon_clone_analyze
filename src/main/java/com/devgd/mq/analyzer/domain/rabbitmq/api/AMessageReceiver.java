@@ -1,4 +1,4 @@
-package com.devgd.mq.analyzer.domain.rabbitmq.receiver;
+package com.devgd.mq.analyzer.domain.rabbitmq.api;
 
 import java.util.concurrent.CountDownLatch;
 
