@@ -1,10 +1,10 @@
-package com.devgd.mq.analyzer.domain.rabbitmq.dto;
+package com.devgd.mq.analyzer.domain.user.dto;
 
 import java.time.LocalDateTime;
 
 import com.devgd.mq.analyzer.domain.model.BaseDto;
-import com.devgd.mq.analyzer.domain.rabbitmq.domain.UserEntity;
-import com.devgd.mq.analyzer.domain.rabbitmq.domain.UserEntity.UserEntityBuilder;
+import com.devgd.mq.analyzer.domain.user.domain.UserEntity.UserEntityBuilder;
+import com.devgd.mq.analyzer.domain.user.domain.UserEntity;
 import com.devgd.mq.analyzer.global.common.util.ModelMapperUtils;
 
 import lombok.Builder;

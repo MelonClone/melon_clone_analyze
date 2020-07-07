@@ -1,8 +1,10 @@
 package com.devgd.mq.analyzer.domain.message.api;
 
-import java.util.Map;
-
 import com.devgd.mq.analyzer.domain.message.application.MessageService;
+import com.devgd.mq.analyzer.domain.model.BaseDto;
+import com.devgd.mq.analyzer.domain.playtime.dto.PlaytimeDto;
+import com.devgd.mq.analyzer.domain.search.dto.SearchDto;
+import com.devgd.mq.analyzer.global.common.Constants;
 import com.devgd.mq.analyzer.global.common.response.SuccessResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,19 @@ public class MessageController {
 	@Autowired
 	MessageService messageService;
 
-	@PostMapping()
-	public SuccessResponse sendMessage(
-		@RequestBody Map<String, String> messageJson
+	@PostMapping("/playtime")
+	public SuccessResponse sendPlaytimeMessage(
+		@RequestBody final PlaytimeDto playtimeDto
 	) {
-		messageService.sendMessage(messageJson);
+		messageService.sendMessage(Constants.PLAYTIME_ROUTING_KEY, (BaseDto) playtimeDto);
+		return new SuccessResponse("done");
+	}
+	
+	@PostMapping("/search")
+	public SuccessResponse sendSearchMessage(
+		@RequestBody final SearchDto searchDto
+	) {
+		messageService.sendMessage(Constants.SEARCH_ROUTING_KEY, (BaseDto) searchDto);
 		return new SuccessResponse("done");
 	}
 	

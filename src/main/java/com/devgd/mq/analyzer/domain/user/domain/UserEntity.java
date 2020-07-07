@@ -1,4 +1,4 @@
-package com.devgd.mq.analyzer.domain.rabbitmq.domain;
+package com.devgd.mq.analyzer.domain.user.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

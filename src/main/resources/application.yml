@@ -26,3 +26,6 @@ spring:
     port: 5672
     username: guest
     password: guest
+    
+  jackson:
+    property-naming-strategy: SNAKE_CASE

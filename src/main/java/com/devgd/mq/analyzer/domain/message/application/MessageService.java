@@ -2,27 +2,32 @@ package com.devgd.mq.analyzer.domain.message.application;
 
 import java.util.Map;
 
+import com.devgd.mq.analyzer.domain.model.BaseDto;
+import com.devgd.mq.analyzer.domain.model.BaseEntity;
 import com.devgd.mq.analyzer.domain.rabbitmq.api.MessageSender;
-import com.devgd.mq.analyzer.global.common.Constants;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@NoArgsConstructor
 public class MessageService {
 	
 	@Autowired
 	MessageSender messageSender;
 
-	public void sendMessage(String message) {
-		messageSender.sendTo(Constants.ROUTING_KEY, message);
+	public void sendMessage(String routingKey, String message) {
+		messageSender.sendTo(routingKey, message);
 	}
 
-	public void sendMessage(Map<String, String> message) {
-		messageSender.sendTo(Constants.ROUTING_KEY, flat(message));
+	public void sendMessage(String routingKey, BaseDto<BaseEntity> message) {
+		messageSender.sendTo(routingKey, message);
+	}
+
+	public void sendMessage(String routingKey, Map<String, String> message) {
+		messageSender.sendTo(routingKey, flat(message));
 	}
 
 	public String flat(Map<String, String> object) {

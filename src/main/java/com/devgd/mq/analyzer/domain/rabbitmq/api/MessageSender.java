@@ -1,5 +1,7 @@
 package com.devgd.mq.analyzer.domain.rabbitmq.api;
 
+import com.devgd.mq.analyzer.domain.model.BaseDto;
+import com.devgd.mq.analyzer.domain.model.BaseEntity;
 import com.devgd.mq.analyzer.global.common.Constants;
 
 import org.slf4j.Logger;
@@ -18,16 +20,19 @@ public class MessageSender {
 
 	public void sendTo(String routingKey, String message) {
 		logger.info("MQ Send message....");
-		System.out.println("MQ Send message....");
 		try {
-			System.out.println(rabbitTemplate.getConnectionFactory().getHost());
-			System.out.println(rabbitTemplate.getConnectionFactory().getPort());
-			System.out.println(rabbitTemplate.getExchange());
-			System.out.println(rabbitTemplate.getRoutingKey());
-			this.rabbitTemplate.convertAndSend(Constants.TOPIC_EXCHANGE_NAME, Constants.ROUTING_KEY, message);
+			this.rabbitTemplate.convertAndSend(Constants.TOPIC_EXCHANGE_NAME, routingKey, message);
 		} catch (AmqpException e) {
-			System.out.println("AMQPException");
-			System.out.println(e.toString());
+			logger.error("AMQPException", e);
+		}
+	}
+
+	public void sendTo(String routingKey, BaseDto<BaseEntity> message) {
+		logger.info("MQ Send message....");
+		try {
+			this.rabbitTemplate.convertAndSend(Constants.TOPIC_EXCHANGE_NAME, routingKey, message);
+		} catch (AmqpException e) {
+			logger.error("AMQPException", e);
 		}
 	}
 }
