@@ -42,6 +42,9 @@ public class PlaytimeEntity implements Serializable, BaseEntity {
 	@Column(name = "playtime", nullable = false)
 	private Integer playtime;
 
+	@Column(name = "background_playtime", nullable = false)
+	private Integer backgroundPlaytime;
+	
 	@Column(name = " user_playtime", nullable = false)
 	private Integer userPlaytime;
 
