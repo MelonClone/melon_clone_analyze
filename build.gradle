@@ -51,6 +51,10 @@ test {
 	useJUnitPlatform()
 }
 
+// For docker jar
+task copyJar(type: Copy) {
+	from 'build/libs'
+	into 'docker' 
+}
 
-
-	// testImplementation 'org.junit.vintage:junit-vintage-engine'
+build.finalizedBy(copyJar)

@@ -1,7 +1,16 @@
 spring:
   application:
     name: analysis-server
+
+---
+spring:
+  profiles: default
   cloud:
     config:
       uri: http://localhost:8888
-      
+--- 
+spring:
+  profiles: docker
+  cloud:
+    config:
+      uri: http://172.19.0.2:8888
